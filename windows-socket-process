@@ -1,0 +1,4 @@
+#log socket connections for each process, performing network communications
+#https://resources.infosecinstitute.com/topic/threat-hunting-with-osquery/
+
+select processes.name, process_open_sockets.remote_address, process_open_sockets.remote_port from process_open_sockets LEFT JOIN processes ON process_open_sockets.pid = processes.pid WHERE process_open_sockets.remote_port != 0 AND processes.name !=  ' ';
