@@ -1,0 +1,4 @@
+# new registry keys and entries within the last 100 seconds
+#https://resources.infosecinstitute.com/topic/threat-hunting-with-osquery/
+
+select path, name, type, data from registry where path like ‘HKEY_USERS%%%’ and mtime > (select local_time from time) – 100;
